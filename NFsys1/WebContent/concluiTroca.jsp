@@ -13,22 +13,21 @@
 					<div class="container has-text-centered">
 						<div class="columns">
 							<div class="column is-half is-offset-one-quarter">
-							
+                                <b>Numero do Produto Encontrado: Digite as Informacoes Abaixo</b>
+                                <br><hr>
 								<form method="post" action="insereTroca">
-                                    <legend>Numero do Produto Encontrado: Digite as Informacoes
-                                        Abaixo</legend>
 
                                     <div class="field">
-                                        <label class="label">Motivo:</label>
+                                        <label>Motivo:</label>
                                         <div class="control">
-                                            <input class="input" type="text" id="motivo" name="motivo">
+                                            <input class="input" type="text" id="troca" name="troca">
                                         </div>
                                     </div>
 
                                     <div class="field">
-                                        <label class="label">Numero de Serie do Novo Produto:</label>
+                                        <label>Numero de Serie do Novo Produto:</label>
                                         <div class="control">
-                                            <input class="input" type="text" id="nSerieNovo" name="nSerieNovo">
+                                            <input class="input" type="text" id="troca" name="troca">
                                         </div>
                                     </div>                                   
                                     
