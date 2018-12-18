@@ -21,14 +21,14 @@
                                     <div class="field">
                                         <label class="label">Motivo:</label>
                                         <div class="control">
-                                            <input class="input" type="text" id="troca" name="troca">
+                                            <input class="input" type="text" id="motivo" name="motivo">
                                         </div>
                                     </div>
 
                                     <div class="field">
                                         <label class="label">Numero de Serie do Novo Produto:</label>
                                         <div class="control">
-                                            <input class="input" type="text" id="troca" name="troca">
+                                            <input class="input" type="text" id="nSerieNovo" name="nSerieNovo">
                                         </div>
                                     </div>                                   
                                     
