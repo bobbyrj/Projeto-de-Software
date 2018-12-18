@@ -3,73 +3,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Sistema Nota Fiscal</title>
-
-<style type="text/css">
-	body {
-		background: #7B68EE;
-		font-size: 80%;
-		padding: 20px;
-	}
-	
-	main {
-	  background: white;
-	  margin: 0 auto;
-	  padding: 10px;
-	  max-height: 200px;
-	  max-width: 200px;
-	}
-
-	main div {
-	  background: black;
-	  margin: 0 auto;
-	  color: white;
-	  padding: 15px;
-	  margin: 5px auto;
-	  text-align: center;
-	}
-
-</style>
-
+	<meta charset="ISO-8859-1">
+	<title>Sistema Nota Fiscal</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
-		<main>
-			<div>
-				<%
-					//Link Upload
-				%>
+	<main>
+		<section class="hero is-primary is-medium">
+			<div class="hero-body">
+				<div class="container has-text-centered">
+					<div class="columns">
+						<div class="column is-half is-offset-one-quarter">
+						
+											
+							<!--Link Upload-->
+							<div class="field">
+								<form method="post" action="insereJsp" enctype="multipart/form-data">
+									<button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+									name="carrega" value="Cadastrar Produto">
+									Cadastrar Produto
+									</button>
+								</form>
+							</div>
+							
 
-				<form method="post" action="insereJsp" enctype="multipart/form-data">
-					<input type="submit" id="carrega" title="enviar" class="carrega"
-						name="carrega" value="Cadastrar Produto" />
-				</form>
+							<!--Link Troca-->
+							<div class="field">
+								<form method="post" action="trocaJsp" enctype="multipart/form-data">
+									<button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+									name="carrega" value="Trocar Produto">
+									Trocar Produto
+									</button>
+								</form>
+							</div>
+
+							<!--Gerar relatorio-->
+							<div class="field">
+								<form method="post" action="relatorioJsp" enctype="multipart/form-data">
+									<button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+									name="carrega" value="Gerar Relatorio">
+									Gerar Relatorio 
+									</button>
+								</form>
+							</div>
+							
+						</div>
+					</div>
+				</div>
 			</div>
-			
-
-			<div>
-				<%
-					//Link Troca
-				%>
-
-				<form method="post" action="trocaJsp" enctype="multipart/form-data">
-					<input type="submit" id="carrega" title="enviar" class="carrega"
-						name="carrega" value="Trocar Produto" />
-				</form>
-			</div>
-
-			<div>
-				<%
-					//Link Relatorio
-				%>
-
-				<form method="post" action="relatorioJsp"
-					enctype="multipart/form-data">
-					<input type="submit" id="carrega" title="enviar" class="carrega"
-						name="carrega" value="Gerar Relatorio" />
-				</form>
-		
-			</div>
-		</main>
+		</section>				  		
+	</main>
 </body>
 </html>
