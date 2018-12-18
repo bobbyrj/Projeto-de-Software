@@ -39,7 +39,7 @@ public class Usuario {
 			ConexaoBD a = new ConexaoBD();
 			a.iniciaBd();
 			Connection c = a.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO notafiscal (id, modelo, numserie, numfiscal, datanf) values ?,?,?,?,?");
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO notafiscal (idnf, numfiscal, numserie, modelo, datanf) values ?,?,?,?,?");
 			ps.setString(1, n1.getId());
 			ps.setString(2, n1.getModelo());
 			ps.setString(3, n1.getSerie());
