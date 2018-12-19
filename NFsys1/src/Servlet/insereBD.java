@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import Object.Item;
 import Object.NotaFiscal;
 import Object.Produto;
+import Object.Usuario;
 
 /**
  * Servlet implementation class insereBD
@@ -53,8 +54,9 @@ public class insereBD extends HttpServlet {
 		for (int i=0, x=0; i < produto.size(); i++) {
 			for (int z = 0; z < produto.get(i).getQtd(); z++,x++) {
 				if (numSerie[x] != "") {
-					unidade = new Item(produto.get(i), numSerie[x], nf1,false);
+					unidade = new Item(produto.get(i), numSerie[x], nf1);
 					itens.add(unidade);
+					System.out.println(numSerie[x]);
 				}
 			}		
 		
@@ -67,6 +69,12 @@ public class insereBD extends HttpServlet {
 			System.out.println(nf1.getItems().get(i).getCodigoProduto());
 		}
 		
+		System.out.println(Usuario.addNf(nf1));
+		System.out.println(Usuario.addItemNf(nf1));
+		
+
+		
+		response.sendRedirect("produtosInseridos.jsp");
 	}
 
 }

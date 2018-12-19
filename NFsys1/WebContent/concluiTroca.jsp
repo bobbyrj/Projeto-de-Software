@@ -40,6 +40,17 @@
                             </div>
 
                         </form>	
+                        
+                         <!--Retorna a Pagina Inicial-->
+                        <hr>
+                        <form method="post" action="inicialJsp" enctype="multipart/form-data">
+                            <div class="control">
+                                <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+                                name="carrega" value="Pagina Inicial">
+                                Pagina Inicial
+                                </button>
+                            </div>
+                        </form>     
                         							
                     </div>
                 </div>

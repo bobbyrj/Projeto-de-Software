@@ -23,7 +23,7 @@
                             </div>                                   
                             
                             <div class="control">
-                                <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+                                <button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar"
                                 name="carrega" value="Validar">
                                 Validar
                                 </button>

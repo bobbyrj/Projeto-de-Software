@@ -1,6 +1,9 @@
 package Object;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class NotaFiscal {
@@ -12,7 +15,11 @@ public class NotaFiscal {
 		Serie = serie;
 		Modelo = modelo;
 		Id = Modelo + "-" + Serie + "-" + Numero;
-		DataVenda = dataVenda;
+		//DataVenda = dataVenda;
+		//Calendar c = Calendar.getInstance();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();		
+		DataVenda = date;
 		Items = items;
 	}
 	
@@ -23,7 +30,7 @@ public class NotaFiscal {
 	private String Modelo;
 	private String Serie;
 	private String Numero;
-	private Calendar DataVenda;
+	private Date DataVenda;
 	private List<Item> Items;
 	
 	public String getModelo() {
@@ -44,8 +51,8 @@ public class NotaFiscal {
 	public void setNumero(String numero) {
 		Numero = numero;
 	}
-	public Calendar getDataVenda() {
-		return DataVenda;
+	public java.sql.Date getDataVenda() {
+		return (java.sql.Date) DataVenda;
 	}
 	public void setDataVenda(Calendar dataVenda) {
 		DataVenda = dataVenda;

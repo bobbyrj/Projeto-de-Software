@@ -10,7 +10,7 @@ public class ConexaoBD {
 	public void iniciaBd() {
 		try {
 			// jdbc:mysql//PortaDeConexão/NomeDoEsquema
-			String database = "jdbc:mysql://127.0.0.1/projetonf";
+			String database = "jdbc:mysql://localhost/projetonf";
 			// nome do usuário para acessar o banco
 			String usuario = "root";
 			// senha para acessar o banco
@@ -38,6 +38,9 @@ public class ConexaoBD {
 
 	// retorna a conexão
 	public Connection getConexao() {
+		
+		System.out.println("sucesso");
+		
 		return con;
 	}
 }
