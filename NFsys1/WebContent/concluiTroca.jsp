@@ -8,33 +8,46 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
-
+	<%
+		String nserie = (String) session.getAttribute("nSerie");
+		String codprod = (String) session.getAttribute("codigoProd");
+		String nf = (String) session.getAttribute("nf");
+	
+	%>
+	
     <section class="hero is-primary is-medium">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="columns">
                     <div class="column is-half is-offset-one-quarter">
-                        <b>Numero do Produto Encontrado: Digite as Informacoes Abaixo</b>
+                        <b>O Produto foi Encontrado: Digite as Informacoes Abaixo</b>
                         <br><hr>
                         <form method="post" action="insereTroca">
 
                             <div class="field">
+                                <label>Produto Encontrado:</label>
+                                <div class="control">
+                                    <input class="input" type="text" id="devolvido" name="devolvido" value=<%=nserie%> readonly>
+                                </div>
+                            </div>
+                            
+                            <div class="field">
                                 <label>Motivo:</label>
                                 <div class="control">
-                                    <input class="input" type="text" id="troca" name="troca">
+                                    <input class="input" type="text" id="motivo" name="motivo" required>
                                 </div>
                             </div>
 
                             <div class="field">
                                 <label>Numero de Serie do Novo Produto:</label>
                                 <div class="control">
-                                    <input class="input" type="text" id="troca" name="troca">
+                                    <input class="input" type="text" id="nSerieTroca" name="nSerieTroca" required>
                                 </div>
                             </div>                                   
                             
                             <div class="control">
-                                <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega"
-                                title="enviar" class="carrega" name="carrega" value="Validar">
+                                <button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega"
+                                title="enviar" name="carrega" value="Validar">
                                 Validar
                                 </button>
                             </div>

@@ -44,8 +44,12 @@ public class trocaItem extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String nserie = (String) request.getParameter("nSerie");
+		String idprod = Usuario.listaNS(nserie);
 		
-		if (Usuario.listaNS(nserie)) {
+		if (idprod != "") {
+			session.setAttribute("codigoProd", idprod.split("-")[0]);
+			session.setAttribute("nSerie", idprod.split("-")[1]);
+			session.setAttribute("nf", idprod.split("-")[2]);
 			response.sendRedirect("concluiTroca.jsp");		
 		} else {
 			response.sendRedirect("erroBD.jsp");

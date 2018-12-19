@@ -18,7 +18,7 @@
                         <form method="post" action="trocaItem">                                
                             <div class="field">                               
                                 <div class="control">
-                                    <input class="input" type="text" id="nSerie" name="nSerie">
+                                    <input class="input" type="text" id="nSerie" name="nSerie" required>
                                 </div>
                             </div>                                   
                             

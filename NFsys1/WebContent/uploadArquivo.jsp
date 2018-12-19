@@ -18,7 +18,7 @@
 							<form method="post" action="uploadArq" enctype="multipart/form-data">   
                                 <b>Carregue o XML</b><br><br>
                                 <label for="arquivo">Arquivo:</label> 
-                                <input name="arquivo" id="arquivo" type="file"/>
+                                <input name="arquivo" id="arquivo" type="file" required/>
 
                                 <button class="button is-small is-primary is-inverted is-outlined" type="submit" id="carrega" title="enviar" class="carrega"
                                 name="carrega" value="carregar">Carregar</button>

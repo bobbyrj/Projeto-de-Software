@@ -20,11 +20,11 @@ public class Usuario {
 			
 			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO troca (idtroca, idnf, datatroca, iditemdefeito, iditemsaida, motivo) values (?,?,?,?,?,?)");
 			ps.setString(1,troca.getId());
-			ps.setString(2,troca.getNotaFiscal().getId());
+			ps.setString(2,troca.getIdNotaFiscal());
 			ps.setDate(3,troca.getDataTroca());
-			ps.setString(4,troca.getItemSaida().getId());
-			ps.setString(5,troca.getNotaFiscal().getId());
-			ps.setString(6,troca.getNotaFiscal().getId());
+			ps.setString(4,troca.getIdItemDevolvido());
+			ps.setString(5,troca.getItemSaida());
+			ps.setString(6,troca.getMotivo());
 			ps.executeUpdate();
 			ps.close();
 			c.close();
@@ -124,7 +124,7 @@ public class Usuario {
 		}
 	}
 
-	public static synchronized boolean listaNS(String numSerie) {
+	public static synchronized String listaNS(String numSerie) {
 		try {
 			LinkedList<String> listaNS = new LinkedList<String>();
 
@@ -137,7 +137,9 @@ public class Usuario {
 						
 			if (res.next()) {
 				System.out.println(res.getString("id"));
-				return true;		
+				System.out.println(res.getString("idnfiscal"));				
+				
+				return res.getString("id");		
 			}
 
 			ps.close();
@@ -145,12 +147,13 @@ public class Usuario {
 			a.fechaBd();
 			
 			
-			return false;
-			
+			//return false;
+			return "";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			//return false;
+			return "";
 		}
 
 	}

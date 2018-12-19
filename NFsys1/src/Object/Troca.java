@@ -8,27 +8,22 @@ public class Troca {
 	
 	
 	
-	public Troca(String motivo, NotaFiscal notaFiscal, Item itemDevolvido,
-			Item itemSaida) {
+	public Troca(String motivo, String idNotaFiscal, String iditemDevolvido,
+			String iditemSaida) {
 		Id = UUID.randomUUID().toString();
 		DataTroca = java.sql.Date.valueOf(LocalDate.now());
 		Motivo = motivo;
-		NotaFiscal = notaFiscal;
-		ItemDevolvido = itemDevolvido;
-		ItemSaida = itemSaida;
+		this.idNotaFiscal = idNotaFiscal;
+		idItemDevolvido = iditemDevolvido;
+		idItemSaida = iditemSaida;
 	}
 
 	private String Id;
 	private java.sql.Date DataTroca;
 	private String Motivo;
-	private NotaFiscal NotaFiscal;	
-	private Item ItemDevolvido;
-	private Item ItemSaida;
-	
-	public void MudarStatusItemDevolvido() {
-		ItemDevolvido.setTrocado(true);
-	}
-
+	private String idNotaFiscal;	
+	private String idItemDevolvido;
+	private String idItemSaida;
 	
 	public String getId() {
 		return Id;
@@ -54,28 +49,28 @@ public class Troca {
 		Motivo = motivo;
 	}
 
-	public NotaFiscal getNotaFiscal() {
-		return NotaFiscal;
+	public String getIdNotaFiscal() {
+		return idNotaFiscal;
 	}
 
-	public void setNotaFiscal(NotaFiscal notaFiscal) {
-		NotaFiscal = notaFiscal;
+	public void setIdNotaFiscal(String idNotaFiscal) {
+		this.idNotaFiscal = idNotaFiscal;
 	}
 
-	public Item getItemDevolvido() {
-		return ItemDevolvido;
+	public String getIdItemDevolvido() {
+		return idItemDevolvido;
 	}
 
-	public void setItemDevolvido(Item itemDevolvido) {
-		ItemDevolvido = itemDevolvido;
+	public void setIdItemDevolvido(String itemDevolvido) {
+		idItemDevolvido = itemDevolvido;
 	}
 
-	public Item getItemSaida() {
-		return ItemSaida;
+	public String getItemSaida() {
+		return idItemSaida;
 	}
 
-	public void setItemSaida(Item itemSaida) {
-		ItemSaida = itemSaida;
+	public void setItemSaida(String itemSaida) {
+		idItemSaida = itemSaida;
 	}
 	
 	
