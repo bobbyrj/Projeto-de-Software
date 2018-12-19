@@ -10,11 +10,11 @@ public class ConexaoBD {
 	public void iniciaBd() {
 		try {
 			// jdbc:mysql//PortaDeConexão/NomeDoEsquema
-			String database = "jdbc:mysql://localhost/projetonf";
+			String database = "jdbc:mysql://localhost:3307/projetonf";
 			// nome do usuário para acessar o banco
 			String usuario = "root";
 			// senha para acessar o banco
-			String senha = "";
+			String senha = "usbw";
 			// chama a conexão para que o jar seja utilizado
 			Class.forName("com.mysql.jdbc.Driver");
 			// criando a conexão/instanciando o objeto conexão, passando como
@@ -44,5 +44,4 @@ public class ConexaoBD {
 		return con;
 	}
 }
-
 

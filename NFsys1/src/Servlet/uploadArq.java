@@ -70,7 +70,7 @@ public class uploadArq extends HttpServlet {
 		    nf1.setModelo(eElement.getElementsByTagName("mod").item(0).getTextContent());
 		    nf1.setSerie(eElement.getElementsByTagName("serie").item(0).getTextContent());
 		    nf1.setNumero(eElement.getElementsByTagName("nNF").item(0).getTextContent());
-		    //nf1.setDataVenda(eElement.getElementsByTagName("dhEmi").item(0).getTextContent());
+		    nf1.setDataVenda(eElement.getElementsByTagName("dhEmi").item(0).getTextContent());
 		    
 		    	    
 		 }

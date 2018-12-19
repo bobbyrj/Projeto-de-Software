@@ -1,16 +1,17 @@
 package Object;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 public class Troca {
 	
 	
 	
-	public Troca(Calendar dataTroca, String motivo, NotaFiscal notaFiscal, Item itemDevolvido,
+	public Troca(String motivo, NotaFiscal notaFiscal, Item itemDevolvido,
 			Item itemSaida) {
 		Id = UUID.randomUUID().toString();
-		DataTroca = Calendar.getInstance();
+		DataTroca = java.sql.Date.valueOf(LocalDate.now());
 		Motivo = motivo;
 		NotaFiscal = notaFiscal;
 		ItemDevolvido = itemDevolvido;
@@ -18,7 +19,7 @@ public class Troca {
 	}
 
 	private String Id;
-	private Calendar DataTroca;
+	private java.sql.Date DataTroca;
 	private String Motivo;
 	private NotaFiscal NotaFiscal;	
 	private Item ItemDevolvido;
@@ -37,11 +38,11 @@ public class Troca {
 		Id = id;
 	}
 
-	public Calendar getDataTroca() {
+	public java.sql.Date getDataTroca() {
 		return DataTroca;
 	}
 
-	public void setDataTroca(Calendar dataTroca) {
+	public void setDataTroca(java.sql.Date dataTroca) {
 		DataTroca = dataTroca;
 	}
 

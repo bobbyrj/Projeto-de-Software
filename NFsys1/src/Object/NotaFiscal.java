@@ -9,18 +9,14 @@ import java.util.List;
 public class NotaFiscal {
 	
 	
-	public NotaFiscal(String modelo, String serie, String numero, Calendar dataVenda, List<Item> items) {
+	public NotaFiscal(String modelo, String serie, String numero, String dataVenda, List<Item> items) {
 
 		Numero = numero;		
 		Serie = serie;
 		Modelo = modelo;
 		Id = Modelo + "-" + Serie + "-" + Numero;
-		//DataVenda = dataVenda;
-		//Calendar c = Calendar.getInstance();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();		
-		DataVenda = date;
 		Items = items;
+		this.setDataVenda(dataVenda);
 	}
 	
 	public NotaFiscal () {
@@ -30,7 +26,7 @@ public class NotaFiscal {
 	private String Modelo;
 	private String Serie;
 	private String Numero;
-	private Date DataVenda;
+	private java.sql.Date DataVenda;
 	private List<Item> Items;
 	
 	public String getModelo() {
@@ -54,8 +50,22 @@ public class NotaFiscal {
 	public java.sql.Date getDataVenda() {
 		return (java.sql.Date) DataVenda;
 	}
-	public void setDataVenda(Calendar dataVenda) {
-		DataVenda = dataVenda;
+	public void setDataVenda(String dataVenda) {
+		SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-'HH:mm");
+		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+		//dd/MM/yyyy
+		
+		java.sql.Date d = null;
+		try 
+		{
+		   d = (java.sql.Date) input.parse("2018-10-08T14:57:42-03:00");
+		} 
+		catch (Exception e) 
+		{
+		   e.printStackTrace();
+		}		
+		
+		DataVenda = d;
 	}
 	public List<Item> getItems() {
 		return Items;
