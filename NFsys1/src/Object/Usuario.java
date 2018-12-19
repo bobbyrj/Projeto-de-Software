@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,27 +13,75 @@ import java.util.List;
 
 public class Usuario {
 
-	public static synchronized boolean addTroca(Troca troca) {
-		try {
-			ConexaoBD a = new ConexaoBD();
-			a.iniciaBd();
-			Connection c = a.getConexao();
+	public static synchronized boolean addTroca(Troca troca) throws SQLException {
+		Connection c = null;
+		PreparedStatement ps = null;
+		ConexaoBD a = null;	
+		
+		try {	
+			a = new ConexaoBD();
+			a.iniciaBd();			
+			c = a.getConexao();						
+			c.setAutoCommit(false);			
 			
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO troca (idtroca, idnf, datatroca, iditemdefeito, iditemsaida, motivo) values (?,?,?,?,?,?)");
-			ps.setString(1,troca.getId());
+			String insertTroca = "INSERT INTO troca" +
+			"(idtroca, idnf, datatroca, iditemdefeito, iditemsaida, motivo) values" +
+					"(?,?,?,?,?,?)";
+			
+			String insertProduto = "INSERT INTO produto" +
+			"(id, codprod, numserie, trocado, baixa, idnfiscal) values" +
+					"(?,?,?,?,?,?)";
+			
+			ps = (PreparedStatement) c.prepareStatement(insertTroca);
+
+			ps.execute("SET FOREIGN_KEY_CHECKS=0");	
+			ps.setInt(1, 0);
 			ps.setString(2,troca.getIdNotaFiscal());
 			ps.setDate(3,troca.getDataTroca());
 			ps.setString(4,troca.getIdItemDevolvido());
 			ps.setString(5,troca.getItemSaida());
 			ps.setString(6,troca.getMotivo());
-			ps.executeUpdate();
-			ps.close();
-			c.close();
-			a.fechaBd();
-			return true;
+			ps.addBatch();
+			
+			ps = (PreparedStatement) c.prepareStatement(insertProduto);
+			
+			ps.setString(1, troca.getItemSaida());
+			ps.setString(2, troca.getItemSaida().split("-")[0]);			
+			ps.setString(3, troca.getItemSaida().split("-")[1]);
+			ps.setBoolean(4, true);
+			ps.setBoolean(5, false);
+			ps.setString(6, troca.getIdNotaFiscal());
+			ps.addBatch();
+						
+			ps.executeBatch();
+			ps.executeUpdate("UPDATE produto SET baixa = '1' WHERE numserie = '" + troca.getIdItemDevolvido().split("-")[1] + "'");
+			
+			
+			c.commit();
+			ps.execute("SET FOREIGN_KEY_CHECKS=1");
+			
+			System.out.println("TROCA deu certo");
+			
+			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
+			c.rollback();
 			e.printStackTrace();
+			return false;
+			
+		} finally {
+			
+			if (ps != null) {
+
+				ps.close();			
+
+			}
+			
+			if (c != null) {
+				a.fechaBd();
+				return true;
+			}
+			
 			return false;
 		}
 	}
@@ -62,7 +111,7 @@ public class Usuario {
 		}
 	}
 	
-	public static synchronized boolean addItemNf (NotaFiscal n1) {
+	public static synchronized boolean addItemNf (NotaFiscal n1) throws SQLException {
 		Connection c = null;
 		PreparedStatement ps = null;
 		ConexaoBD a = null;
@@ -107,12 +156,9 @@ public class Usuario {
 		} finally {
 			
 			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+				ps.close();			
+
 			}
 			
 			if (c != null) {
@@ -124,22 +170,24 @@ public class Usuario {
 		}
 	}
 
-	public static synchronized String listaNS(String numSerie) {
+	public static synchronized List<String> listaNS(String numSerie) {
 		try {
 			LinkedList<String> listaNS = new LinkedList<String>();
 
 			ConexaoBD a = new ConexaoBD();
 			a.iniciaBd();
 			Connection c = a.getConexao();
-			PreparedStatement ps = (PreparedStatement) c.prepareStatement("select * from produto where id LIKE '%" + numSerie + "%'");
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("select * from produto where numserie = '" + numSerie + "' AND baixa <> 1");
 			ResultSet res = (ResultSet) ps.executeQuery();
 			System.out.println(numSerie);
+			List<String> ids = new ArrayList<String>();
 						
 			if (res.next()) {
 				System.out.println(res.getString("id"));
 				System.out.println(res.getString("idnfiscal"));				
-				
-				return res.getString("id");		
+				ids.add(res.getString("id"));
+				ids.add(res.getString("idnfiscal"));
+				return ids;	
 			}
 
 			ps.close();
@@ -148,12 +196,12 @@ public class Usuario {
 			
 			
 			//return false;
-			return "";
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			//return false;
-			return "";
+			return null;
 		}
 
 	}

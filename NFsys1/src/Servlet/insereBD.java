@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +71,12 @@ public class insereBD extends HttpServlet {
 		}
 		
 		System.out.println(Usuario.addNf(nf1));
-		System.out.println(Usuario.addItemNf(nf1));
+		try {
+			System.out.println(Usuario.addItemNf(nf1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 
 		

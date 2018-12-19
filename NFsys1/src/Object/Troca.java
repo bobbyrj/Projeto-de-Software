@@ -10,7 +10,7 @@ public class Troca {
 	
 	public Troca(String motivo, String idNotaFiscal, String iditemDevolvido,
 			String iditemSaida) {
-		Id = UUID.randomUUID().toString();
+		
 		DataTroca = java.sql.Date.valueOf(LocalDate.now());
 		Motivo = motivo;
 		this.idNotaFiscal = idNotaFiscal;

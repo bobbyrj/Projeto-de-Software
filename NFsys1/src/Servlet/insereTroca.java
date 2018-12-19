@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,17 +43,30 @@ public class insereTroca extends HttpServlet {
 		String codprod = (String) session.getAttribute("codigoProd");
 		String devolvido = (String) session.getAttribute("nSerie");
 		String nf = (String) session.getAttribute("nf");
-		String motivo = (String) session.getAttribute("motivo");
-		String nstroca = (String) session.getAttribute("nSerieTroca");
+		String idnf = (String) session.getAttribute("idnf");
+		String motivo = (String) request.getParameterValues("dTroca")[0];
+		String nstroca = (String) request.getParameterValues("dTroca")[1];
 		
-		Troca t1 = new Troca(motivo, nf, "codprod-"+ devolvido + "-"+nf, "codprod-"+ nstroca + "-"+nf);
+		System.out.println(motivo);
+		System.out.println(codprod);
+		System.out.println(nf);
+		System.out.println(devolvido);
+		System.out.println(nstroca);
 		
-		Usuario.addTroca(t1);
+		
+		Troca t1 = new Troca(motivo, idnf, codprod + "-" + devolvido + "-" + nf, codprod + "-" + nstroca + "-" + nf);
+		
+		try {
+			Usuario.addTroca(t1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println(codprod);
 		System.out.println(nf);
 		
-		
+		response.sendRedirect("produtosInseridos.jsp");
 	}
 
 }
