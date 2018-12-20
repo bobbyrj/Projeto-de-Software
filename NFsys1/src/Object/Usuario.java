@@ -205,6 +205,78 @@ public class Usuario {
 		}
 
 	}
+	
+	public static synchronized boolean addSenha (String senha, String login, String acesso) {
+		try {
+			
+			ConexaoBD a = new ConexaoBD();
+			a.iniciaBd();
+			Connection c = a.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("INSERT INTO usuario (login, senha, acesso) values (?,?,?)");
+			
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));			 
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+			  hexString.append(String.format("%02X", 0xFF & b));
+			}
+			senha = hexString.toString();
+
+			ps.setString(1, login);
+			ps.setString(2, senha);
+			ps.setString(3, acesso);
+			
+			ps.executeUpdate();
+			ps.close();
+			c.close();
+			a.fechaBd();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public static synchronized String RecuperaSenha (String login) {
+		try {			
+
+			ConexaoBD a = new ConexaoBD();
+			a.iniciaBd();
+			Connection c = a.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("select * from usuario where login = '" + login + "'");
+			ResultSet res = (ResultSet) ps.executeQuery();			
+			
+			String senha;
+			
+			if (res.next()) {				
+				senha = res.getString("senha");	
+				MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+				byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+
+				StringBuilder hexString = new StringBuilder();
+				for (byte b : messageDigest) {
+				  hexString.append(String.format("%02X", 0xFF & b));
+				}
+				String senha = hexString.toString();
+				return senha;
+			}
+			
+			
+
+			ps.close();
+			c.close();
+			a.fechaBd();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return false;
+			return null;
+		}
+
+	}
 }
 
 
