@@ -8,6 +8,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
+
+	<form method="post" action="geraRelatorio">
+		<input type="radio" name="relatorio" value="male"> Male<br>
+		<input type="radio" name="relatorio" value="female"> Female<br>
+		<input type="radio" name="relatorio" value="other"> Other<br>  
+		<input type="submit" value="Submit">
+		
+	
+	</form>
+	
     <section class="hero is-primary is-medium">
         <div class="hero-body">
             <div class="container has-text-centered">
