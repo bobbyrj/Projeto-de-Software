@@ -14,21 +14,33 @@
 	
 	%>
 	
-	<form method="post" action="insereTroca">
-	<label>Codigo do Produto Devolvido a Unidade</label>
-	<input type="text" id="devolvido" name="devolvido" value=<%=codprod%> readonly>
-	<label>Número de Série do Produto Devolvido a Unidade</label>
-	<input type="text" id="devolvido" name="devolvido" value=<%=nserie%> readonly>
-	
-	<label>Motivo</label>
-	<input type="text" id="dTroca" name="dTroca" required>
-	<label>Número de Sério do Novo Produto</label>
-	<input type="text" id="dTroca" name="dTroca" required>
-	
-	<input type="submit" id="enviar" name="enviar" value="Enviar">
-	
-	
-	</form>
+	<section class="hero is-primary is-medium">
+		<div class="hero-body">
+			<div class="container has-text-centered">
+				<div class="columns">
+					<div class="column is-half is-offset-one-quarter">
+						
+					<form method="post" action="insereTroca">
+
+						<label>Codigo do Produto Devolvido a Unidade</label>
+						<input type="text" id="devolvido" name="devolvido" value=<%=codprod%> readonly>
+						<label>Numero de Serie do Produto Devolvido a Unidade</label>
+						<input type="text" id="devolvido" name="devolvido" value=<%=nserie%> readonly>
+						
+						<label>Motivo</label>
+						<input type="text" id="dTroca" name="dTroca" required>
+						<label>Numero de Serie do Novo Produto</label>
+						<input type="text" id="dTroca" name="dTroca" required>
+						
+						<input type="submit" id="enviar" name="enviar" value="Enviar">	
+						
+					</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>				
 
 </body>
 </html>

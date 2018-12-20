@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Erro!</title>
+<title>Sucesso</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
@@ -15,8 +15,8 @@
 					<div class="columns">
 						<div class="column is-half is-offset-one-quarter">
 							
-							<div class="notification is-danger">
-							  Numero de serie nao encontrado!
+							<div class="notification is-success">
+							  Troca Realizada com sucesso!
 							</div>
 						
 							<!--Retorna a Pagina Inicial-->

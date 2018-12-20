@@ -16,7 +16,7 @@
 						<div class="column is-half is-offset-one-quarter">
 							
 							<div class="notification is-danger">
-							  Numero de serie nao encontrado!
+							  Troca não concluída.
 							</div>
 						
 							<!--Retorna a Pagina Inicial-->
