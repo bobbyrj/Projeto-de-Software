@@ -1,5 +1,7 @@
 package Object;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -213,18 +215,20 @@ public class Usuario {
 			ConexaoBD a = new ConexaoBD();
 			a.iniciaBd();
 			Connection c = a.getConexao();
+			PreparedStatement ps;
 
 			String sqlUmAtributo = "SELECT * FROM " + tabela + " WHERE "
-			+ atributo + " = '" + dados[0] +"'");
+			+ atributo + " = '" + dados.get(0) +"'"
+			;
 
 			String sqlData = "SELECT * FROM " + tabela + " WHERE "
-			+ atributo + " >= '" + dados[0] + "' AND "
-			+ atributo + " <= '" + dados[1] + "'");					
+			+ atributo + " >= '" + dados.get(0) + "' AND "
+			+ atributo + " <= '" + dados.get(1) + "'";					
 			
 			if (dados.size() > 1) {
-				PreparedStatement ps = (PreparedStatement) c.prepareStatement(sqlUmAtributo);
+				ps = (PreparedStatement) c.prepareStatement(sqlUmAtributo);
 			} else {
-				PreparedStatement ps = (PreparedStatement) c.prepareStatement(sqlData);
+				ps = (PreparedStatement) c.prepareStatement(sqlData);
 			}
 			
 			
@@ -256,7 +260,7 @@ public class Usuario {
 
 	}
 
-	public static synchronized boolean addSenha (String senha, String login, String acesso) {
+	public static synchronized boolean addSenha (String senha, String login, String acesso) throws Exception {
 		try {
 			
 			ConexaoBD a = new ConexaoBD();
@@ -288,7 +292,7 @@ public class Usuario {
 		}
 	}
 	
-	public static synchronized String RecuperaSenha (String login) {
+	public static synchronized String RecuperaSenha (String login) throws Exception {
 		try {			
 
 			ConexaoBD a = new ConexaoBD();
@@ -308,7 +312,7 @@ public class Usuario {
 				for (byte b : messageDigest) {
 				  hexString.append(String.format("%02X", 0xFF & b));
 				}
-				String senha = hexString.toString();
+				senha = hexString.toString();
 				return senha;
 			}
 			
@@ -318,6 +322,7 @@ public class Usuario {
 			c.close();
 			a.fechaBd();
 			
+			return null;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
