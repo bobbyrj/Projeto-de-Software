@@ -206,6 +206,56 @@ public class Usuario {
 
 	}
 	
+	public static synchronized List<String> geraRelatorio(String tabela, String atributo, List<String> dados) {
+		try {
+			
+
+			ConexaoBD a = new ConexaoBD();
+			a.iniciaBd();
+			Connection c = a.getConexao();
+
+			String sqlUmAtributo = "SELECT * FROM " + tabela + " WHERE "
+			+ atributo + " = '" + dados[0] +"'");
+
+			String sqlData = "SELECT * FROM " + tabela + " WHERE "
+			+ atributo + " >= '" + dados[0] + "' AND "
+			+ atributo + " <= '" + dados[1] + "'");					
+			
+			if (dados.size() > 1) {
+				PreparedStatement ps = (PreparedStatement) c.prepareStatement(sqlUmAtributo);
+			} else {
+				PreparedStatement ps = (PreparedStatement) c.prepareStatement(sqlData);
+			}
+			
+			
+			ResultSet res = (ResultSet) ps.executeQuery();
+			
+			List<String> ids = new ArrayList<String>();
+						
+			if (res.next()) {
+				System.out.println(res.getString("id"));
+				System.out.println(res.getString("idnfiscal"));				
+				ids.add(res.getString("id"));
+				ids.add(res.getString("idnfiscal"));
+				return ids;	
+			}
+
+			ps.close();
+			c.close();
+			a.fechaBd();
+			
+			
+			//return false;
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return false;
+			return null;
+		}
+
+	}
+
 	public static synchronized boolean addSenha (String senha, String login, String acesso) {
 		try {
 			
