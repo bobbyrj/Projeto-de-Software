@@ -58,15 +58,17 @@ public class insereTroca extends HttpServlet {
 		
 		try {
 			Usuario.addTroca(t1);
+			response.sendRedirect("trocaSucesso.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+			response.sendRedirect("trocaErro.jsp");
+		} 
 		
 		System.out.println(codprod);
 		System.out.println(nf);
 		
-		response.sendRedirect("produtosInseridos.jsp");
+		
 	}
 
 }
