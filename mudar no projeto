@@ -1,0 +1,21 @@
+#87090D - cor da empresa
+Date util / pra date sql get time - usar data util dd/mm/aaaa e converter para sql usando gettime
+Checar radio readonly e retorno por get
+
+criar estrutura das paginas
+
+incluir descrição do produto e do defeito no BD
+Criar uma Página final após a insereproduto para inserção dos NS com atualização da página intermediária com os itens incluídos. página intermediaria terá botão de finalizar inserção e outro para acessar página de inserção de número de séries. Inserir um campo de contador de números de série a serem inseridos e quantos já foram inseridos.
+Verificar se a nota fiscal selecionada já está inserida no banco inativando os códigos de produto já inseridos no banco.
+anexar ao início do Id do item a posição do chkbok.
+Na troca voltar todos os itens com número de série igual inserindo as informações dos mesmos e pesquisando após a data da nota fiscal para apresentação das informações. apresentar duas opções com troca ou baixa..... chkbox na troca com hide css.
+validar o número de série no caso de troca de produto não podendo o mesmo ser igual ao do item devolvido.
+Gerar relatório de troca por motivo (de desistência ou garantia) e por data (período de troca) ordenar por código do produto.
+
+
+
+
+
+
+
+
