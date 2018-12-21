@@ -1,0 +1,20 @@
+https://github.com/bobbyrj/Projeto-de-Software
+
+roteamento
+
+  inicialjsp - volta pagina inicial
+  inserejsp - vai para a pagina de upload xml
+  relatoriojsp - vai para a pagina de relatorio
+  trocajsp - vai para a pagina de troca
+
+servlet
+
+  insereBD - Inserção no banco de dados dos itens importados do xml
+  insereTroca - Inserção no banco de dados dos itens da troca
+  trocaItem - Redirecionar após verificar no BD o número de série do item a ser trocado
+  concluiTroca.jsp - Troca item com número de serie validado no BD 
+  erroBD.jsp - erros relacionados ao banco de dados
+
+https://howtodoinjava.com/xml/read-xml-dom-parser-example/#create_documentbuilder
+
+
