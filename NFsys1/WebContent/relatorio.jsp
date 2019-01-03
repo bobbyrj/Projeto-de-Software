@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
-
+	<%
+			String login = (String) session.getAttribute("login");
+			if (login == null) {
+				response.sendRedirect("login.jsp");
+			} 
+	%>
+	
 	<form method="post" action="geraRelatorio">
 		<input type="radio" name="relatorio" value="male"> Male<br>
 		<input type="radio" name="relatorio" value="female"> Female<br>
@@ -32,7 +38,7 @@
                     %>
 
                     <hr>
-                    <form method="post" action="inicialJsp" enctype="multipart/form-data">
+                    <form method="post" action="index.jsp" enctype="multipart/form-data">
                         <div class="control">
                             <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
                             name="carrega" value="Pagina Inicial">

@@ -14,6 +14,13 @@
 </head>
 <body>
 
+		<%
+			String login = (String) session.getAttribute("login");
+			if (login == null) {
+				response.sendRedirect("login.jsp");
+			} 
+		%>
+
     <section class="hero is-primary is-medium">
             <div class="hero-body">
                 <div class="container has-text-centered">

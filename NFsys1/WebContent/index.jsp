@@ -2,56 +2,64 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Sistema Nota Fiscal</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-</head>
-<body>
-	<main>
-		<section class="hero is-primary is-medium">
-			<div class="hero-body">
-				<div class="container has-text-centered">
-					<div class="columns">
-						<div class="column is-half is-offset-one-quarter">
-						
-											
-							<!--Link Upload-->
-							<div class="field">
-								<form method="post" action="insereJsp" enctype="multipart/form-data">
-									<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" 
-									name="carrega" type="submit" id="carrega" title="enviar" value="Cadastrar Produto">
-									Cadastrar Produto
-									</button>
-								</form>
-							</div>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Sistema Nota Fiscal</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+	</head>
+	<body>
+	
+		<%
+			String login = (String) session.getAttribute("login");
+			if (login == null) {
+				response.sendRedirect("login.jsp");
+			} 
+		%>
+		
+		<main>
+			<section class="hero is-primary is-medium">
+				<div class="hero-body">
+					<div class="container has-text-centered">
+						<div class="columns">
+							<div class="column is-half is-offset-one-quarter">
 							
-
-							<!--Link Troca-->
-							<div class="field">
-								<form method="post" action="trocaJsp" enctype="multipart/form-data">
-									<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar"
-									name="carrega" value="Trocar Produto">
-									Trocar Produto
-									</button>
-								</form>
+												
+								<!--Link Upload-->
+								<div class="field">
+									<form method="post" action="uploadArquivo.jsp" enctype="multipart/form-data">
+										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" 
+										name="carrega" type="submit" id="carrega" title="enviar" value="Cadastrar Produto">
+										Cadastrar Produto
+										</button>
+									</form>
+								</div>
+								
+	
+								<!--Link Troca-->
+								<div class="field">
+									<form method="post" action="troca.jsp" enctype="multipart/form-data">
+										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar"
+										name="carrega" value="Trocar Produto">
+										Trocar Produto
+										</button>
+									</form>
+								</div>
+	
+								<!--Gerar relatorio-->
+								<div class="field">
+									<form method="post" action="relatorio.jsp" enctype="multipart/form-data">
+										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar" 
+										name="carrega" value="Gerar Relatorio">
+										Gerar Relatório 
+										</button>
+									</form>
+								</div>
+								
 							</div>
-
-							<!--Gerar relatorio-->
-							<div class="field">
-								<form method="post" action="relatorioJsp" enctype="multipart/form-data">
-									<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="" title="enviar" 
-									name="carrega" value="Gerar Relatorio">
-									Gerar Relatorio 
-									</button>
-								</form>
-							</div>
-							
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>				  		
-	</main>
-</body>
+			</section>				  		
+		</main>
+	</body>
 </html>

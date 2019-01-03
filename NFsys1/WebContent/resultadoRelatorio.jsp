@@ -7,6 +7,12 @@
 <title>Resultado Relatorio</title>
 </head>
 <body>
+	<%
+			String login = (String) session.getAttribute("login");
+			if (login == null) {
+				response.sendRedirect("login.jsp");
+			} 
+	%>
 
 </body>
 </html>

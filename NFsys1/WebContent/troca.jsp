@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
+
+	<%
+			String login = (String) session.getAttribute("login");
+			if (login == null) {
+				response.sendRedirect("login.jsp");
+			} 
+	%>
+	
     <section class="hero is-primary is-medium">
         <div class="hero-body">
             <div class="container has-text-centered">
@@ -32,7 +40,7 @@
 
                         <!--Retorna a Pagina Inicial-->
                         <hr>
-                        <form method="post" action="inicialJsp" enctype="multipart/form-data">
+                        <form method="post" action="index.jsp" enctype="multipart/form-data">
                             <div class="control">
                                 <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
                                 name="carrega" value="Pagina Inicial">

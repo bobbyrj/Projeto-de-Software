@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import Object.Item;
 import Object.NotaFiscal;
 import Object.Produto;
-import Object.Usuario;
+import Object.UsuarioBD;
 
 /**
  * Servlet implementation class trocaItem
@@ -44,7 +44,7 @@ public class trocaItem extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String nserie = (String) request.getParameter("nSerie");
-		List<String> idprod = Usuario.listaNS(nserie);
+		List<String> idprod = UsuarioBD.listaNS(nserie);
 		
 		if (idprod != null) {
 			session.setAttribute("codigoProd", idprod.get(0).split("-")[0]);

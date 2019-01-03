@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import Object.Item;
 import Object.NotaFiscal;
 import Object.Produto;
-import Object.Usuario;
+import Object.UsuarioBD;
 
 /**
  * Servlet implementation class insereBD
@@ -70,9 +70,9 @@ public class insereBD extends HttpServlet {
 			System.out.println(nf1.getItems().get(i).getCodigoProduto());
 		}
 		
-		System.out.println(Usuario.addNf(nf1));
+		System.out.println(UsuarioBD.addNf(nf1));
 		try {
-			System.out.println(Usuario.addItemNf(nf1));
+			System.out.println(UsuarioBD.addItemNf(nf1));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

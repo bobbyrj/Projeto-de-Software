@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Object.Item;
-import Object.Usuario;
+import Object.UsuarioBD;
 
 /**
  * Servlet implementation class insereTroca
@@ -45,7 +45,7 @@ public class geraRelatorio extends HttpServlet {
 		String relatorio = (String) request.getParameterValues("relatorio")[0];		
 		    
 		try {
-			List<Item> resposta = Usuario.geraRelatorio(relatorio);
+			List<Item> resposta = UsuarioBD.geraRelatorio(relatorio);
 			response.sendRedirect("apresentaRelatorio.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

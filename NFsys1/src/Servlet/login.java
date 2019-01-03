@@ -1,27 +1,24 @@
 package Servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Object.Troca;
 import Object.UsuarioBD;
 
 /**
- * Servlet implementation class insereTroca
+ * Servlet implementation class login
  */
-public class insereTroca extends HttpServlet {
+public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public insereTroca() {
+    public login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,37 +35,31 @@ public class insereTroca extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		String login = (String) request.getParameter("login");
+		String senha = (String) request.getParameter("senha");
 		
-		String codprod = (String) session.getAttribute("codigoProd");
-		String devolvido = (String) session.getAttribute("nSerie");
-		String nf = (String) session.getAttribute("nf");
-		String idnf = (String) session.getAttribute("idnf");
-		String motivo = (String) request.getParameterValues("dTroca")[0];
-		String nstroca = (String) request.getParameterValues("dTroca")[1];
-		
-		System.out.println(motivo);
-		System.out.println(codprod);
-		System.out.println(nf);
-		System.out.println(devolvido);
-		System.out.println(nstroca);
-		
-		
-		Troca t1 = new Troca(motivo, idnf, codprod + "-" + devolvido + "-" + nf, codprod + "-" + nstroca + "-" + nf);
+		System.out.println(senha);
 		
 		try {
-			UsuarioBD.addTroca(t1);
-			response.sendRedirect("trocaSucesso.jsp");
-		} catch (SQLException e) {
+			String acesso = UsuarioBD.RecuperaSenha(login, senha);
+			HttpSession session = request.getSession();
+			
+			System.out.println(acesso);
+
+			if (acesso == null) {
+				session.setAttribute("erro", "1");
+				response.sendRedirect("login.jsp");
+			} else {				
+				session.setAttribute("login", acesso);
+				response.sendRedirect("index.jsp");
+			}
+
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			response.sendRedirect("trocaErro.jsp");
-		} 
-		
-		System.out.println(codprod);
-		System.out.println(nf);
-		
-		
+		}
+
 	}
 
 }
