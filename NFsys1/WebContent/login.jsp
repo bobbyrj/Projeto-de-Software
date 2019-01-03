@@ -10,9 +10,21 @@
 
 	<%
 			String login = (String) session.getAttribute("login");
+			
 			if (login != null) {
 				response.sendRedirect("index.jsp");
 			} 
+	%>
+	
+	<%
+		String erro = (String) session.getAttribute("erro");
+		String msgErro = "Login ou Senha incorretos";
+		
+		if (erro != null) {
+			if (erro.equals("1")) { %>
+				<%=msgErro%>
+			<%}%>
+		<%} 
 	%>
 	<form action="login" method="post">
 		<fieldset>
