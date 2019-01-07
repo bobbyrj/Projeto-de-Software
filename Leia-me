@@ -1,19 +1,37 @@
 https://github.com/bobbyrj/Projeto-de-Software
+https://www.caelum.com.br/apostila-java-web/servlets/#pegando-os-parmetros-da-requisio
 
-roteamento
 
-  inicialjsp - volta pagina inicial
-  inserejsp - vai para a pagina de upload xml
-  relatoriojsp - vai para a pagina de relatorio
-  trocajsp - vai para a pagina de troca
+páginas
+index - página inicial
+login - página de login
+uploadArquivo - exibe a tela para selecionar o arquivo xml 
+selecionaProduto - exibe os produtos disponíveis na nota fiscal e os itens que já tiveram suas notas fiscais inseridas
+insereProduto - exibe um produto com a devida quantidade para inserção de numero de serie
+troca - recebe o numero de serie para pesquisa no bd
+completaTroca - escolhe o motivo da troca (garantia ou devolução) e se vai dar baixa ou trocar o produto inserindo o novo numero de serie
+erroBD - exibe o erro ocorrido
+sucessoBD - exibe a operação que foi realizada no bd
+geraRelatorio - seleciona o tipo de relatório requerido
+resultadoRelatorio - exibe o relatório selecionado
+
 
 servlet
+insereBD - Inserção no banco de dados dos itens importados do xml
+insereTroca - Inserção no banco de dados dos itens da troca
+trocaItem - Redirecionar após verificar no BD o número de série do item a ser trocado
+completaTroca.jsp - Troca item com número de serie validado no BD 
+erroBD.jsp - erros relacionados ao banco de dados
+uploadArquivo - guarda o arquivo selecionado no computador
 
-  insereBD - Inserção no banco de dados dos itens importados do xml
-  insereTroca - Inserção no banco de dados dos itens da troca
-  trocaItem - Redirecionar após verificar no BD o número de série do item a ser trocado
-  concluiTroca.jsp - Troca item com número de serie validado no BD 
-  erroBD.jsp - erros relacionados ao banco de dados
+objetos
+arquivo
+conexaoBD
+item
+notafiscal
+produto
+troca
+usuarioBD
 
 https://howtodoinjava.com/xml/read-xml-dom-parser-example/#create_documentbuilder
 
