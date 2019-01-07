@@ -26,7 +26,7 @@
 												
 								<!--Link Upload-->
 								<div class="field">
-									<form method="post" action="uploadArquivo.jsp" enctype="multipart/form-data">
+									<form method="post" action="Paginas/Cadastro/uploadArquivo.jsp" enctype="multipart/form-data">
 										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" 
 										name="carrega" type="submit" id="carrega" title="enviar" value="Cadastrar Produto">
 										Cadastrar Produto
@@ -37,7 +37,7 @@
 	
 								<!--Link Troca-->
 								<div class="field">
-									<form method="post" action="troca.jsp" enctype="multipart/form-data">
+									<form method="post" action="Paginas/Troca/troca.jsp" enctype="multipart/form-data">
 										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar"
 										name="carrega" value="Trocar Produto">
 										Trocar Produto
@@ -47,7 +47,7 @@
 	
 								<!--Gerar relatorio-->
 								<div class="field">
-									<form method="post" action="relatorio.jsp" enctype="multipart/form-data">
+									<form method="post" action="Paginas/Relatorio/relatorio.jsp" enctype="multipart/form-data">
 										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar" 
 										name="carrega" value="Gerar Relatorio">
 										Gerar Relatório 

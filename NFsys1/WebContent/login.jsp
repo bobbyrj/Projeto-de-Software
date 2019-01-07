@@ -30,13 +30,23 @@
 		<fieldset>
 			<legend>Insira seus dados</legend>
 
-			<input type="text" id="login" name="login" placeholder="usuario">
-			<input type="password" id="senha" name="senha" placeholder="senha">
+			<input type="text" id="login" name="login" placeholder="usuario" required>
+			<input type="password" id="senha" name="senha" placeholder="senha" required>
 			<input type="reset" id="reset" name="reset" value="Apagar Formulario">
 			<input type="submit" id="valida" name="valida" value="Entrar">
 			
 		</fieldset>
 	</form>
+
+<!--Sobre o Programa-->
+								<div class="field">
+									<form method="post" action="about.jsp" enctype="multipart/form-data">
+										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar" 
+										name="carrega" value="Sobre o Programa">
+										Sobre o Programa
+										</button>
+									</form>
+								</div>
 
 </body>
 </html>

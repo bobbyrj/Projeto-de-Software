@@ -20,7 +20,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>uploadArq</servlet-name>
-    <url-pattern>/uploadArq</url-pattern>
+    <url-pattern>/Paginas/Cadastro/uploadArq</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -30,7 +30,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>insereBD</servlet-name>
-    <url-pattern>/insereBD</url-pattern>
+    <url-pattern>/Servlet/insereBD</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -40,47 +40,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>trocaItem</servlet-name>
-    <url-pattern>/trocaItem</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>insereJsp</display-name>
-    <servlet-name>insereJsp</servlet-name>
-    <servlet-class>Servlet.insereJsp</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>insereJsp</servlet-name>
-    <url-pattern>/insereJsp</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>trocaJsp</display-name>
-    <servlet-name>trocaJsp</servlet-name>
-    <servlet-class>Servlet.trocaJsp</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>trocaJsp</servlet-name>
-    <url-pattern>/trocaJsp</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>relatorioJsp</display-name>
-    <servlet-name>relatorioJsp</servlet-name>
-    <servlet-class>Servlet.relatorioJsp</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>relatorioJsp</servlet-name>
-    <url-pattern>/relatorioJsp</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>inicialJsp</display-name>
-    <servlet-name>inicialJsp</servlet-name>
-    <servlet-class>Servlet.inicialJsp</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>inicialJsp</servlet-name>
-    <url-pattern>/inicialJsp</url-pattern>
+    <url-pattern>/Servlet/trocaItem</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -90,7 +50,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>insereTroca</servlet-name>
-    <url-pattern>/insereTroca</url-pattern>
+    <url-pattern>/Servlet/insereTroca</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

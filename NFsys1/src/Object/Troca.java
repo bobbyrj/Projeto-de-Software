@@ -11,7 +11,7 @@ public class Troca {
 	public Troca(String motivo, String idNotaFiscal, String iditemDevolvido,
 			String iditemSaida) {
 		
-		DataTroca = java.sql.Date.valueOf(LocalDate.now());
+		DataTroca = java.util.Date.setTime(LocalDate.now());
 		Motivo = motivo;
 		this.idNotaFiscal = idNotaFiscal;
 		idItemDevolvido = iditemDevolvido;
@@ -19,7 +19,7 @@ public class Troca {
 	}
 
 	private String Id;
-	private java.sql.Date DataTroca;
+	private java.util.Date DataTroca;
 	private String Motivo;
 	private String idNotaFiscal;	
 	private String idItemDevolvido;
