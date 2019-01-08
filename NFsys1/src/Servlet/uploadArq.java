@@ -96,8 +96,8 @@ public class uploadArq extends HttpServlet {
 		    Produto produto = new Produto();
 		    produto.setCodigoProduto(codigo);
 		    produto.setDescricao(descricao);
-		    //produto.setQtd((int) Math.abs(qtd));
-		    produto.setQtd(2);
+		    produto.setQtd((int) Math.abs(qtd));
+		    //produto.setQtd(2);
 		   
 		    
 		    
@@ -211,7 +211,7 @@ public class uploadArq extends HttpServlet {
 				sessao.setAttribute("prod", produto);
 				sessao.setAttribute("nf", nf);
 				
-				response.sendRedirect("InsereProduto.jsp");
+				response.sendRedirect("SelecionaProduto.jsp");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -19,24 +19,30 @@
 	<%
 		String erro = (String) session.getAttribute("erro");
 		String msgErro = "Login ou Senha incorretos";
-		
-		if (erro != null) {
-			if (erro.equals("1")) { %>
-				<%=msgErro%>
-			<%}%>
-		<%} 
 	%>
+		
 	<form action="login" method="post">
 		<fieldset>
 			<legend>Insira seus dados</legend>
 
-			<input type="text" id="login" name="login" placeholder="usuario" required>
-			<input type="password" id="senha" name="senha" placeholder="senha" required>
+			<%
+				if (erro != null) {
+						if (erro.equals("1")) { %>							
+							<%=msgErro%>
+							<br>
+						<%}%>
+					<%} 
+			%>
+			
+			<input type="text" id="login" name="login" placeholder="usuario" value="admin" required>
+			<input type="password" id="senha" name="senha" placeholder="senha" value="12345" required>
 			<input type="reset" id="reset" name="reset" value="Apagar Formulario">
 			<input type="submit" id="valida" name="valida" value="Entrar">
 			
 		</fieldset>
 	</form>
+	
+	
 
 <!--Sobre o Programa-->
 								<div class="field">

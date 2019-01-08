@@ -11,8 +11,11 @@
 	<%
 			String login = (String) session.getAttribute("login");
 			if (login == null) {
-				response.sendRedirect("login.jsp");
-			} 
+				response.sendRedirect("../../login.jsp");
+			} else if (!login.equals("admin")){
+				session.setAttribute("erroPermissao", "Usuários não tem Permissão para acessar este item.");
+				response.sendRedirect("../../login.jsp");
+			}
 	%>
 	
 	<form method="post" action="geraRelatorio">
@@ -38,7 +41,7 @@
                     %>
 
                     <hr>
-                    <form method="post" action="index.jsp" enctype="multipart/form-data">
+                    <form method="post" action="../../index.jsp" enctype="multipart/form-data">
                         <div class="control">
                             <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
                             name="carrega" value="Pagina Inicial">

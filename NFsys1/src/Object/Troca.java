@@ -1,8 +1,6 @@
 package Object;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.UUID;
 
 public class Troca {
 	
@@ -11,7 +9,7 @@ public class Troca {
 	public Troca(String motivo, String idNotaFiscal, String iditemDevolvido,
 			String iditemSaida) {
 		
-		DataTroca = java.util.Date.setTime(LocalDate.now());
+		DataTroca = new Date();
 		Motivo = motivo;
 		this.idNotaFiscal = idNotaFiscal;
 		idItemDevolvido = iditemDevolvido;
@@ -33,12 +31,8 @@ public class Troca {
 		Id = id;
 	}
 
-	public java.sql.Date getDataTroca() {
+	public Date getDataTroca() {
 		return DataTroca;
-	}
-
-	public void setDataTroca(java.sql.Date dataTroca) {
-		DataTroca = dataTroca;
 	}
 
 	public String getMotivo() {

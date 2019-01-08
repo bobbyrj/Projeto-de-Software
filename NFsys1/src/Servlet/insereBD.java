@@ -44,7 +44,7 @@ public class insereBD extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();	
 		List<Produto> produto = (List<Produto>) session.getAttribute("prod");
 		String[] numSerie = (String[]) request.getParameterValues("nSerie");
 		NotaFiscal nf1 = (NotaFiscal) session.getAttribute("nf");

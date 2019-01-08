@@ -11,10 +11,13 @@
 	
 		<%
 			String login = (String) session.getAttribute("login");
+		
 			if (login == null) {
 				response.sendRedirect("login.jsp");
 			} 
 		%>
+		
+		
 		
 		<main>
 			<section class="hero is-primary is-medium">
@@ -22,6 +25,11 @@
 					<div class="container has-text-centered">
 						<div class="columns">
 							<div class="column is-half is-offset-one-quarter">
+							
+							<% if (login != null) { %>
+									Logado como <%=login.toUpperCase() %>
+									<br>
+							<%}	%>							
 							
 												
 								<!--Link Upload-->
@@ -54,6 +62,26 @@
 										</button>
 									</form>
 								</div>
+								
+								<% 
+									String erro = (String) session.getAttribute("erroPermissao");	
+									if (erro != null) { %>
+										Erro: <%=erro%>
+									<%} %>
+								
+								
+								<!--Logout-->
+								
+								<div class="field">
+									<form method="post" action="deslogar" enctype="multipart/form-data">
+										<button class="button is-primary is-inverted is-outlined is-fullwidth carrega" type="submit" id="carrega" title="enviar" 
+										name="carrega" value="deslogar">
+										Sair da Sessão 
+										</button>
+									</form>
+								</div>
+									
+								
 								
 							</div>
 						</div>

@@ -29,7 +29,7 @@
 						
 							<!--Retorna a Pagina Inicial-->
                             <hr>
-                            <form method="post" action="index.jsp" enctype="multipart/form-data">
+                            <form method="post" action="../../index.jsp" enctype="multipart/form-data">
                                 <div class="control">
                                     <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
                                     name="carrega" value="Pagina Inicial">

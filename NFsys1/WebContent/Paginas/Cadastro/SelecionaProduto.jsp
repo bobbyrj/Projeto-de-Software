@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
     
     <%@ page import="Object.Produto"%>
-    <%@ page import="Object.Item"%>
     <%@ page import="Object.NotaFiscal"%>
     <%@ page import="java.util.List"%>
     
@@ -10,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insercao de Produto</title>
+<title>Seleção de Produto</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 </head>
 <body>
@@ -31,7 +30,7 @@
                             <%
                                 List<Produto> produto = (List<Produto>) session.getAttribute("prod");
                                 NotaFiscal nf = (NotaFiscal) session.getAttribute("nf");
-                                
+                                List<Item> itensNF = (List<Item>) session.getAttribute("itens");
                             %>
                         
                         <br>
@@ -42,38 +41,45 @@
                         <br>
                         <br>
 
-                        <b>Insercao de Numero de Serie de Produto</b><hr>
-                        <form method="post" action="SelecionaProduto.jsp">                                                        
+                        <b>Selecione um produto para inserir o número de série</b><hr>
+                        <form method="post" action="InsereProduto.jsp">                                                        
                             <table class="table is-fullwidth">
                                 <thead>
                                     <tr>
+                                    	<th></th>
                                         <th>Codigo</th>
                                         <th>Descricao</th>
-                                        <th>Numero de Serie</th>
+                                        <th>Quantidade</th>
                                     </tr>
                                 </thead>                
-                
+                                         
                                 <%
-                                    int i = Integer.parseInt(request.getParameter("produto"));
+                                    for (int i = 0; i < produto.size(); i++) {
                                 %>
-                                
-                                <%
-                                    for (int z = 0; z < produto.get(i).getQtd(); z++) {
-                                %>
+                                   
                                 <tr>
+                                	<% if (itensNF == null) { %>
+                                    	<td><input type="radio" name="produto" id="produto" value="<%=i%>" required></td>
+                                    <%} else if (itensNF.get(i)) %>
+                                    
                                     <td><%=produto.get(i).getCodigoProduto()%></td>
                                     <td><%=produto.get(i).getDescricao()%></td>
-                                    <td><input type="text" id="nSerie" name="nSerie" required></td>
+                                    <td><%=produto.get(i).getQtd()%></td>
                                 </tr>
-                                <%
-                                    }
-                                %>
-                               
-                            </table>                            
+                                
+                                <%}%>
+                                
+                            </table>
+                            
+                            <form method="post" action="InsereProduto">
+                            <input type="submit" value="Inserir Número de Série do Produto Selecionado">
+                            
+                            </form>
+                                                        
                             <div class="control">
                                 <button class="button is-primary is-inverted is-outlined" type="submit" id="carrega" title="enviar" class="carrega"
                                 name="carrega" value="Validar">
-                                Validar
+                                Finalizar Cadastro de Produto
                                 </button>
                             </div>
                         </form>

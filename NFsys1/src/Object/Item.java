@@ -4,9 +4,10 @@ public class Item {
 	
 	public Item(Produto Produto, String numeroDeSerie, NotaFiscal notaFiscal) {		
 		CodigoProduto = Produto.getCodigoProduto();
+		Descricao = Produto.getDescricao();
 		NumeroDeSerie = numeroDeSerie;
 		NotaFiscal = notaFiscal;
-		Id = CodigoProduto + "-" + NumeroDeSerie + "-" + NotaFiscal.getNumero();
+		setId();
 		Trocado = false;
 		Baixa = false;
 	}
@@ -17,6 +18,7 @@ public class Item {
 	}
 	
 	private String Id;
+	private String Descricao;
 	private String CodigoProduto;
 	private String NumeroDeSerie;
 	private NotaFiscal NotaFiscal;
@@ -29,6 +31,11 @@ public class Item {
 	public void setId() {
 		if (CodigoProduto != null && NumeroDeSerie!= null) {
 			Id = CodigoProduto + "-" + NumeroDeSerie + "-" + NotaFiscal.getNumero();
+		}
+	}
+	public void setId(String posicao) {
+		if (CodigoProduto != null && NumeroDeSerie!= null) {
+			Id = posicao + "-" + CodigoProduto + "-" + NumeroDeSerie + "-" + NotaFiscal.getNumero();
 		}
 	}
 	public String getCodigoProduto() {

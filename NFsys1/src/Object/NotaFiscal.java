@@ -1,10 +1,9 @@
 package Object;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class NotaFiscal {
 	
@@ -26,8 +25,9 @@ public class NotaFiscal {
 	private String Modelo;
 	private String Serie;
 	private String Numero;
-	private java.sql.Date DataVenda;
+	private Date DataVenda;
 	private List<Item> Items;
+	private Set<String> Produtos;
 	
 	public String getModelo() {
 		return Modelo;
@@ -52,13 +52,13 @@ public class NotaFiscal {
 	}
 	public void setDataVenda(String dataVenda) {
 		SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-'HH:mm");
-		SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat output = new SimpleDateFormat("dd-MM-yyyy");
 		//dd/MM/yyyy
 		
-		java.sql.Date d = null;
+		Date d = null;
 		try 
 		{
-		   d = (java.sql.Date) input.parse("2018-10-08T14:57:42-03:00");
+		   d = input.parse(dataVenda);
 		} 
 		catch (Exception e) 
 		{
@@ -67,11 +67,22 @@ public class NotaFiscal {
 		
 		DataVenda = d;
 	}
+	
 	public List<Item> getItems() {
 		return Items;
 	}
+	
 	public void setItems(List<Item> items) {
-		Items = items;
+		if (Items == null) {
+			Items = items;
+			setProdutos();
+		} else {
+			for (Item a: items) {
+				Items.add(a);
+				setProdutos();
+			}
+		}
+		
 	}
 	
 	public boolean addItem (Item it) {
@@ -90,5 +101,16 @@ public class NotaFiscal {
 	}
 	public void setId() {
 		Id = Modelo + "-" + Serie + "-" + Numero;
+	}
+
+	public Set<String> getProdutos() {
+		return Produtos;
+	}
+
+	public void setProdutos() {
+		
+		for (Item a: Items) {
+			Produtos.add(a.getCodigoProduto());
+		}
 	}
 }
