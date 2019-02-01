@@ -39,7 +39,7 @@ public class Usuario {
 			ps.execute("SET FOREIGN_KEY_CHECKS=0");	
 			ps.setInt(1, 0);
 			ps.setString(2,troca.getIdNotaFiscal());
-			ps.setDate(3,troca.getDataTroca());
+			ps.setDate(3, new java.sql.Date(troca.getDataTroca().getTime()));
 			ps.setString(4,troca.getIdItemDevolvido());
 			ps.setString(5,troca.getItemSaida());
 			ps.setString(6,troca.getMotivo());
@@ -100,7 +100,7 @@ public class Usuario {
 			ps.setString(2, n1.getNumero());
 			ps.setString(3, n1.getSerie());
 			ps.setString(4, n1.getModelo());			
-			ps.setDate(5, n1.getDataVenda());
+			ps.setDate(5, new java.sql.Date(n1.getDataVenda().getTime()));
 			ps.executeUpdate();
 			ps.close();
 			c.close();

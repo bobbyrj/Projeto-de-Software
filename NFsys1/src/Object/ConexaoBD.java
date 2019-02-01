@@ -21,6 +21,7 @@ public class ConexaoBD {
 			// criando a conexão/instanciando o objeto conexão, passando como
 			// parametros o database, usuario e senha
 			con = (Connection) DriverManager.getConnection(database, usuario, senha);
+			System.out.println("Conectou ao BD");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,8 +40,6 @@ public class ConexaoBD {
 
 	// retorna a conexão
 	public Connection getConexao() {
-		
-		System.out.println("sucesso");
 		
 		return con;
 	}

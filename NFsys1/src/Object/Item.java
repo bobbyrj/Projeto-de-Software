@@ -4,7 +4,7 @@ public class Item {
 	
 	public Item(Produto Produto, String numeroDeSerie, NotaFiscal notaFiscal) {		
 		CodigoProduto = Produto.getCodigoProduto();
-		Descricao = Produto.getDescricao();
+		setDescricao(Produto.getDescricao());
 		NumeroDeSerie = numeroDeSerie;
 		NotaFiscal = notaFiscal;
 		setId();
@@ -68,5 +68,15 @@ public class Item {
 	public boolean getBaixa() {
 		// TODO Auto-generated method stub
 		return Baixa;
+	}
+
+
+	public String getDescricao() {
+		return Descricao;
+	}
+
+
+	public void setDescricao(String descricao) {
+		Descricao = descricao;
 	}
 }

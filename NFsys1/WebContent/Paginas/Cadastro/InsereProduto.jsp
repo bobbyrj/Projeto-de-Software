@@ -15,6 +15,19 @@
 </head>
 <body>
 
+<%
+/*var count = 0;
+
+for ( i=0; i < document.FormName.elements.length; i++ ) {
+
+if ( ~~ document.FormName.elements.value ) {
+
+count++;
+
+}
+
+}*/
+%>
 		<%
 			String login = (String) session.getAttribute("login");
 			if (login == null) {
@@ -37,26 +50,27 @@
                         <br>
                         <br>
                         Modelo da Nota Fiscal: 	<%=nf.getModelo()%><br>
-                        Serie da Nota Fiscal: 	<%=nf.getSerie()%><br>
+                        Série da Nota Fiscal: 	<%=nf.getSerie()%><br>
                         Numero da Nota Fiscal: 	<%=nf.getNumero()%><br>
                         <br>
                         <br>
 
-                        <b>Insercao de Numero de Serie de Produto</b><hr>
-                        <form method="post" action="SelecionaProduto.jsp">                                                        
+                        <b>Inserção de Número de Série de Produto</b><hr>
+                        <form method="post" action="controleCadastro">                                                        
                             <table class="table is-fullwidth">
                                 <thead>
                                     <tr>
-                                        <th>Codigo</th>
-                                        <th>Descricao</th>
-                                        <th>Numero de Serie</th>
+                                        <th>Código</th>
+                                        <th>Descrição</th>
+                                        <th>Número de Série</th>
                                     </tr>
                                 </thead>                
                 
                                 <%
-                                    int i = Integer.parseInt(request.getParameter("produto"));
+                                    int i = Integer.parseInt(request.getParameter("produto"));                                	
                                 %>
                                 
+                                <input type="hidden" id="seqProduto" name="seqProduto" value="<%=i%>">
                                 <%
                                     for (int z = 0; z < produto.get(i).getQtd(); z++) {
                                 %>

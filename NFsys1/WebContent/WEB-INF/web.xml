@@ -72,4 +72,14 @@
     <servlet-name>deslogar</servlet-name>
     <url-pattern>/deslogar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>controleCadastro</display-name>
+    <servlet-name>controleCadastro</servlet-name>
+    <servlet-class>Servlet.controleCadastro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>controleCadastro</servlet-name>
+    <url-pattern>/Paginas/Cadastro/controleCadastro</url-pattern>
+  </servlet-mapping>
 </web-app>

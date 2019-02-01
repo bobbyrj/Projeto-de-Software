@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class NotaFiscal {
 	
@@ -21,11 +22,12 @@ public class NotaFiscal {
 	public NotaFiscal () {
 		
 	}
+	
 	private String Id;
 	private String Modelo;
 	private String Serie;
 	private String Numero;
-	private Date DataVenda;
+	private java.util.Date DataVenda;
 	private List<Item> Items;
 	private Set<String> Produtos;
 	
@@ -47,9 +49,10 @@ public class NotaFiscal {
 	public void setNumero(String numero) {
 		Numero = numero;
 	}
-	public java.sql.Date getDataVenda() {
-		return (java.sql.Date) DataVenda;
+	public Date getDataVenda() {
+		return DataVenda;
 	}
+	
 	public void setDataVenda(String dataVenda) {
 		SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'-'HH:mm");
 		SimpleDateFormat output = new SimpleDateFormat("dd-MM-yyyy");
@@ -75,12 +78,13 @@ public class NotaFiscal {
 	public void setItems(List<Item> items) {
 		if (Items == null) {
 			Items = items;
-			setProdutos();
+			setProdutos(items);
 		} else {
-			for (Item a: items) {
-				Items.add(a);
-				setProdutos();
+			for (int i=0; i<items.size();i++) {
+				Items.add(items.get(i));
+				
 			}
+			setProdutos(items);
 		}
 		
 	}
@@ -107,10 +111,14 @@ public class NotaFiscal {
 		return Produtos;
 	}
 
-	public void setProdutos() {
+	public void setProdutos (List<Item> items) {
 		
-		for (Item a: Items) {
-			Produtos.add(a.getCodigoProduto());
+		if (Produtos == null) {
+			Produtos = new TreeSet<String>();
+			for (int i=0; i<items.size();i++) {
+				Produtos.add(items.get(i).getCodigoProduto());
+			}
 		}
+		
 	}
 }
