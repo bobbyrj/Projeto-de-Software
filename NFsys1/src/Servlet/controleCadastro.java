@@ -45,8 +45,9 @@ public class controleCadastro extends HttpServlet {
 	
 		HttpSession session = request.getSession();	
 		List<Produto> produto = (List<Produto>) session.getAttribute("prod");
-		String[] numSerie = (String[]) request.getParameterValues("nSerie");
+		String numSerie = (String) request.getParameter("nSerie");
 		NotaFiscal nf1 = (NotaFiscal) session.getAttribute("nf");
+		String nProduto = (String) session.getAttribute("nProduto");
 		
 		String alterarProduto = request.getParameter("alterarproduto");
 		
@@ -67,39 +68,70 @@ public class controleCadastro extends HttpServlet {
 			response.sendRedirect("SelecionaProduto.jsp");
 			
 		} else {
-			List<Item> itens = new ArrayList<Item>();
-			
-			Set<Integer> posicao;
-			
-			if (session.getAttribute("posicao") == null) {
-				posicao = new TreeSet<Integer>();
+			Set<String> itensInseridos;
+
+			if (session.getAttribute("itensInseridos") == null) {
+				itensInseridos = new TreeSet<String>();
 			} else {
-				posicao = (Set<Integer>) session.getAttribute("posicao");
+				itensInseridos = (Set<String>) session.getAttribute("itensInseridos");
 			}
-			
-			
+
 			Item unidade;
+			int i;
 			
-			int i = Integer.parseInt(request.getParameter("seqProduto"));
-			posicao.add(i);
-			System.out.println(posicao);
-			
-				for (int z = 0; z < produto.get(i).getQtd(); z++) {
-				
-						unidade = new Item(produto.get(i), numSerie[z], nf1);
-						itens.add(unidade);
-						System.out.println(numSerie[z]);
-						System.out.println(itens.get(z).getCodigoProduto());
-				}		
-			
-			session.setAttribute("posicao",posicao);
-			
-			
-			nf1.setItems(itens);
-			
-			session.setAttribute("itens",nf1.getItems());
-			
-			response.sendRedirect("SelecionaProduto.jsp");
+			if (nProduto == null) {
+				i = Integer.parseInt(request.getParameter("seqProduto"));
+			}	else {
+				i = Integer.parseInt(nProduto);
+			}
+
+			if ((produto.get(i).getQtd() > itensInseridos.size()) || itensInseridos == null) {
+				if (itensInseridos.add(numSerie) == true) {
+					System.out.println(numSerie);
+
+					session.setAttribute("nProduto", String.valueOf(i));
+					
+					session.setAttribute("itensInseridos",itensInseridos);
+
+					if (itensInseridos.size() == produto.get(i).getQtd()) {
+						List<Item> itens = new ArrayList<Item>();
+						List<String> itensNS = new ArrayList<String>();
+						itensNS.addAll(itensInseridos);
+						
+						for (int z = 0; z < produto.get(i).getQtd(); z++) {
+							
+							unidade = new Item(produto.get(i), itensNS.get(z), nf1);
+							itens.add(unidade);
+							
+						}
+						
+						Set<Integer> posicao;
+						if (session.getAttribute("posicao") == null) {
+							posicao = new TreeSet<Integer>();
+						} else {
+							posicao = (Set<Integer>) session.getAttribute("posicao");
+						}
+						
+						posicao.add(i);
+						session.setAttribute("posicao", posicao);
+						session.removeAttribute("itensInseridos");
+						session.removeAttribute("nProduto");
+						nf1.setItems(itens);
+						session.setAttribute("itens", nf1.getItems());
+
+						System.out.println(nf1.getItems().get(0).getNumeroDeSerie());
+						System.out.println(posicao);
+						
+						response.sendRedirect("SelecionaProduto.jsp");
+					} else {
+						
+						response.sendRedirect("InsereProduto.jsp");
+					}
+				} else {
+					session.setAttribute("erro", "Número de Série já existe, Por Favor digite um Número Diferente.");
+					response.sendRedirect("InsereProduto.jsp");
+				}
+			}
 		}
 			
 	}

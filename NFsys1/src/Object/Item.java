@@ -12,7 +12,16 @@ public class Item {
 		Baixa = false;
 	}
 		
-
+	public Item(String Codprod, String descricao, String NumSerie, NotaFiscal notaFiscal) {		
+		CodigoProduto = Codprod;
+		setDescricao(descricao);
+		NumeroDeSerie = NumSerie;
+		NotaFiscal = notaFiscal;
+		setId();
+		Trocado = false;
+		Baixa = false;
+	}
+	
 	public Item () {
 		
 	}

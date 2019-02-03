@@ -10,9 +10,22 @@ pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html"charset="ISO-8859-1">
 	<title>Seleção de Produto</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <style>
+        .is-red{
+            background-color: #87090D;       
+        }
+        .is-silver{
+            background-color: silver;
+            color: black;
+            border:darkgrey solid;
+        }
+        .is-white{
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,12 +36,9 @@ pageEncoding="ISO-8859-1"%>
 	} 
 	%>
 
-<section class="hero is-primary is-medium">
-	<div class="hero-body">
-		<div class="container has-text-centered">
-			<div class="columns">
-				<div class="column is-three-fifths
-				is-offset-one-fifth">
+    <section class="hero is-red is-fullwidth is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
 				<%
 				List<Produto> produto = (List<Produto>) session.getAttribute("prod");
 				NotaFiscal nf = (NotaFiscal) session.getAttribute("nf");
@@ -46,61 +56,65 @@ pageEncoding="ISO-8859-1"%>
 				%>
 
 				<% if (alterado != null && novo != null) {%>
-					<h2> O produto <%=novo.getDescricao()%> teve seu número
-					de série alterado de <%=alterado%> para
+					<h2> O produto <%=novo.getDescricao()%> teve seu nï¿½mero
+					de sï¿½rie alterado de <%=alterado%> para
 					<%=novo.getNumeroDeSerie()%> </h2>
 				<%} %>
 				
-				<br>
-				<br>
-				Modelo da Nota Fiscal: 	<%=nf.getModelo()%><br>
-				Serie da Nota Fiscal: 	<%=nf.getSerie()%><br>
-				Numero da Nota Fiscal: 	<%=nf.getNumero()%><br>
-				<br>
-				<br>
+                <article class="tile is-child notification">
+                    <div class="has-text-weight-bold  notification is-red" style="color:white;">
+                        Modelo da Nota Fiscal: 	<%=nf.getModelo()%><br>
+                        Serie da Nota Fiscal: 	<%=nf.getSerie()%><br>
+                        Numero da Nota Fiscal: 	<%=nf.getNumero()%>
+                    </div>
 
-				<b>Selecione um produto para inserir o número de série</b><hr>
-				<form method="post" action="InsereProduto.jsp">                                                        
-					<table class="table is-fullwidth">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Codigo</th>
-								<th>Descricao</th>
-								<th>Quantidade</th>
-							</tr>
-						</thead>                
+                    <div class="has-text-weight-bold  notification is-silver">
+                        Selecione um produto para inserir o nÃºmero de sÃ©rie
+                    </div>
+                    <hr>
+                    <form method="post" action="InsereProduto.jsp">                                                        
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Codigo</th>
+                                    <th>Descricao</th>
+                                    <th>Quantidade</th>
+                                </tr>
+                            </thead>                
 
-						<%
-						for (int i = 0; i < produto.size(); i++) {
-						%>
+                            <%
+                            for (int i = 0; i < produto.size(); i++) {
+                            %>
 
-						<tr>
-							<% if (posicao != null && posicao.contains(i)) {%>
-									<td><input type="radio" name="produto" id="produto" value="<%=i%>" disabled></td>
-								
-							<%} else {%>
-								<td><input type="radio" name="produto" id="produto" value="<%=i%>" required></td>
-							<%}%>
-															
-							<td><%=produto.get(i).getCodigoProduto()%></td>
-							<td><%=produto.get(i).getDescricao()%></td>
-							<td><%=produto.get(i).getQtd()%></td>
-						</tr>
+                            <tr>
+                                <% if (posicao != null && posicao.contains(i)) {%>
+                                <td><input type="radio" name="produto" id="produto" value="<%=i%>" disabled></td>
+                                    
+                                <%} else {%>
+                                <td><input type="radio" name="produto" id="produto" value="<%=i%>" required></td>
+                                <%}%>
+                                                                
+                                <td><%=produto.get(i).getCodigoProduto()%></td>
+                                <td><%=produto.get(i).getDescricao()%></td>
+                                <td><%=produto.get(i).getQtd()%></td>
+                            </tr>
 
-						<%}%>
+                            <%}%>
 
-					</table>
+                        </table>
 
-
-					<input type="submit" value="Inserir Número de Série do Produto Selecionado">
-
-				</form>
+                        <div class="buttons is-right">
+                            <input class="button is-inverted is-outlined" type="submit" value="Inserir NÃºmero de SÃ©rie do Produto Selecionado">
+                        </div>
+                    </form>
 				
 				<% if (itensNF != null) { %>	
 					<form method="post" action="AlteraProduto.jsp">
-						<h1>Produtos Já Inseridos</h1><br>
-						<h1>Selecione um Produto para Alteração Caso seja Necessario</h1><br>
+						<h1>Produtos já Inseridos!</h1><br>
+						<div class="has-text-weight-bold  notification is-silver">
+                            Selecione um Produto para Alteração Caso seja Necessario
+                        </div>
 						<table class="table is-fullwidth">
 								<thead>
 									<tr>
@@ -125,23 +139,22 @@ pageEncoding="ISO-8859-1"%>
 								</tr>
 								<%} %>
 						</table>
-						
-						<input type="submit" value="Alterar Produto Selecionado">
+						<div class="buttons is-right">
+                            <input class="button is-inverted is-outlined" type="submit" value="Alterar Produto Selecionado">
+                        </div>
 					</form>
-				<%} %>
+                <%} %>
 				<form method="post" action="insereBD">            
-					<div class="control">
-						<button class="button is-primary is-inverted is-outlined" type="submit" id="carrega" title="enviar" class="carrega"
+					<div class="buttons is-right">
+						<button class="button is-inverted is-outlined" type="submit" id="carrega" title="enviar" class="carrega"
 						name="carrega" value="Validar">
 						Finalizar Cadastro de Produto
 					</button>
 				</div>
-			</form>
-
-		</div>
-	</div>
-</div>
-</div>
+			    </form>
+            </article>
+        </div>
+    </div>
 </section>		
 </body>
 </html>

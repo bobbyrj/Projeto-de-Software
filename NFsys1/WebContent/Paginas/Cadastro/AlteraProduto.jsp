@@ -10,7 +10,21 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Alterar Número de Série de Produto Inserido</title>
+<title>Alterar Nï¿½mero de Sï¿½rie de Produto Inserido</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<style>
+        .is-red{
+            background-color: #87090D;        
+        }
+        .is-silver{
+            background-color: silver;
+            color: black;
+            border:darkgrey solid;
+        }
+        .is-white{
+            color: white;
+        }
+    </style>
 </head>
 <body>
 	<%
@@ -25,26 +39,51 @@
 		int i = Integer.parseInt(request.getParameter("produto"));
 	%>
 
-	
+    <section class="hero is-medium">
+        <div class="hero-body is-fullwidth is-fullheight is-red">
+            <div class="container has-text-centered">
+                <div class="columns">
+                    <div class="column is-half is-offset-one-quarter">
+                        <article class="tile is-child notification">
+                            <div class="has-text-weight-bold notification" style="color:#87090D; border:darkgrey solid;">
+                                Modelo da Nota Fiscal: <%=nf.getModelo()%><br>
+                                SÃ©rie da Nota Fiscal: <%=nf.getSerie()%><br>
+                                Numero da Nota Fiscal: <%=nf.getNumero()%><br>
+                                Produto selecionado: <%=nf.getItems().get(i).getDescricao()%><br>
+                                CÃ³digo do Produto selecionado: <%=nf.getItems().get(i).getCodigoProduto()%><br>
+                                NÃºmero de SÃ©rie do Produto selecionado: <%=nf.getItems().get(i).getNumeroDeSerie()%><br>
+                            </div>
+                        
+                        <br>
+                            <form method="post" action="controleCadastro"> 
+                                <div class="container is-fluid">
+                                    <div class="has-text-weight-bold">
+                                        Insira o novo NÃºmero de SÃ©rie do Produto 
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="hidden" id="seqProduto" name="seqProduto" value="<%=i%>">
+                                    </div>
+                                </div>
 
-	<br>
-	<br>
-	Modelo da Nota Fiscal:<%=nf.getModelo()%><br>
-	Série da Nota Fiscal: <%=nf.getSerie()%><br>
-	Numero da Nota Fiscal: <%=nf.getNumero()%><br>
-	Produto selecionado: <%=nf.getItems().get(i).getDescricao()%><br>
-	Código do Produto selecionado: <%=nf.getItems().get(i).getCodigoProduto()%><br>
-	Número de Série do Produto selecionado: <%=nf.getItems().get(i).getNumeroDeSerie()%><br>
-	<br>
-	<br>
-	<form method="post" action="controleCadastro"> 
-		<fieldset>
-			<legend> Insira o novo Numero de Série do Produto </legend>
-			<input type="hidden" id="seqProduto" name="seqProduto" value="<%=i%>">
-			<input type="text" id="nSerie" name="nSerie" required>
-		</fieldset>
-		<input type="hidden" id="alterarproduto" name="alterarproduto" value="alterar">
-		<input type="submit" id="envia" name="envia">
-	</form>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" id="nSerie" name="nSerie" required>
+                                    </div>
+                                </div>
+
+                                <div class="control">
+                                    <input class="button is-silver input" type="hidden" id="alterarproduto" name="alterarproduto" value="alterar">
+                                    <input class="button is-silver input" type="submit" id="envia" name="envia">
+                                </div>
+                            </form>
+                        
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>                        
+    </section>
 </body>
 </html>

@@ -45,30 +45,9 @@ public class insereBD extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();	
-		List<Produto> produto = (List<Produto>) session.getAttribute("prod");
-		String[] numSerie = (String[]) request.getParameterValues("nSerie");
-		NotaFiscal nf1 = (NotaFiscal) session.getAttribute("nf");
 		
-		List<Item> itens = new ArrayList<Item>();
-		Item unidade;
+		NotaFiscal nf1 = (NotaFiscal) session.getAttribute("nf");	
 		
-		for (int i=0, x=0; i < produto.size(); i++) {
-			for (int z = 0; z < produto.get(i).getQtd(); z++,x++) {
-				if (numSerie[x] != "") {
-					unidade = new Item(produto.get(i), numSerie[x], nf1);
-					itens.add(unidade);
-					System.out.println(numSerie[x]);
-				}
-			}		
-		
-		}
-		
-		nf1.setItems(itens);
-		
-		for (int i=0; i<nf1.getItems().size();i++) {
-			System.out.println(nf1.getItems().get(i).getNumeroDeSerie());
-			System.out.println(nf1.getItems().get(i).getCodigoProduto());
-		}
 		
 		System.out.println(UsuarioBD.addNf(nf1));
 		try {

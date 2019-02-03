@@ -211,6 +211,7 @@ public class uploadArq extends HttpServlet {
 				sessao.setAttribute("prod", produto);
 				sessao.setAttribute("nf", nf);
 				
+				
 				response.sendRedirect("SelecionaProduto.jsp");
 			}
 		} catch (Exception e) {

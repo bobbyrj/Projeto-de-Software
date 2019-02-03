@@ -7,6 +7,16 @@
 <title>Sucesso!!</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<style>
+    .is-red{
+        background-color: #87090D;    
+        color: white;    
+    }
+    .is-silver{
+        background-color: silver;
+        color: black;
+    }
+</style>
 </head>
 <body>
 
@@ -17,13 +27,13 @@
 			} 
 	%>
 	
-	<section class="hero is-primary is-medium">
+	<section class="hero is-red is-fullwidth is-fullheight">
 			<div class="hero-body">
 				<div class="container has-text-centered">
 					<div class="columns">
 						<div class="column is-half is-offset-one-quarter">
 							
-							<div class="notification is-success">
+							<div class="notification is-silver">
 							  Itens inseridos com sucesso!
 							</div>
 						
@@ -31,7 +41,7 @@
                             <hr>
                             <form method="post" action="index.jsp" enctype="multipart/form-data">
                                 <div class="control">
-                                    <button class="button is-primary is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
+                                    <button class="button is-inverted is-outlined is-fullwidth" type="submit" id="carrega" title="enviar" class="carrega"
                                     name="carrega" value="Pagina Inicial">
                                     Pagina Inicial
                                     </button>

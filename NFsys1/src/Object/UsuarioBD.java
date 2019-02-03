@@ -16,6 +16,47 @@ import java.util.List;
 
 public class UsuarioBD {
 
+	public static synchronized NotaFiscal verificaNotaFiscal (String idnotafiscal) throws Exception {
+		try {			
+		
+			ConexaoBD a = new ConexaoBD();
+			a.iniciaBd();
+			Connection c = a.getConexao();
+			PreparedStatement ps = (PreparedStatement) c.prepareStatement("select * from produto where idnfiscal = '" + idnotafiscal + "' AND trocado = '0'");
+			ResultSet res = (ResultSet) ps.executeQuery();			
+			
+			if (res.next()) {				
+				senhaBD = res.getString("senha");	
+				MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+				byte messageDigest[] = algorithm.digest(senha.getBytes(StandardCharsets.UTF_8));
+
+				StringBuilder hexString = new StringBuilder();
+				for (byte b : messageDigest) {
+				  hexString.append(String.format("%02X", 0xFF & b));
+				}
+				senha = hexString.toString();
+				
+				if (senha.equals(senhaBD)) return res.getString("acesso");
+				
+			}
+			
+			
+
+			ps.close();
+			c.close();
+			a.fechaBd();
+			
+			return null;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return false;
+			return null;
+		}
+
+	}
+	
 	public static synchronized boolean addTroca(Troca troca) throws SQLException {
 		Connection c = null;
 		PreparedStatement ps = null;
@@ -128,18 +169,19 @@ public class UsuarioBD {
 			List<Item> item = n1.getItems();
 			
 			String insertSql = "INSERT INTO produto" +
-			"(id, codprod, numserie, trocado, baixa, idnfiscal) values" +
-					"(?,?,?,?,?,?)";
+			"(id, codprod, descricao, numserie, trocado, baixa, idnfiscal) values" +
+					"(?,?,?,?,?,?,?)";
 			ps = (PreparedStatement) c.prepareStatement(insertSql);
 			
 			for(int i = 0; i < n1.getItems().size(); i++) {
 				
 				ps.setString(1, item.get(i).getId());
-				ps.setString(2, item.get(i).getCodigoProduto());			
-				ps.setString(3, item.get(i).getNumeroDeSerie());
-				ps.setBoolean(4, item.get(i).getTrocado());
-				ps.setBoolean(5, item.get(i).getBaixa());
-				ps.setString(6, item.get(i).getNotaFiscal().getId());
+				ps.setString(2, item.get(i).getCodigoProduto());
+				ps.setString(3, item.get(i).getDescricao());
+				ps.setString(4, item.get(i).getNumeroDeSerie());
+				ps.setBoolean(5, item.get(i).getTrocado());
+				ps.setBoolean(6, item.get(i).getBaixa());
+				ps.setString(7, item.get(i).getNotaFiscal().getId());
 				ps.addBatch();
 				
 			}

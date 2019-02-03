@@ -54,7 +54,7 @@ public class trocaItem extends HttpServlet {
 			
 			response.sendRedirect("completaTroca.jsp");		
 		} else {
-			response.sendRedirect("erroBD.jsp");
+			response.sendRedirect("../../erroBD.jsp");
 		}	
 		
 		
